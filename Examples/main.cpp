@@ -1,6 +1,6 @@
 //
 //  main.cpp
-//  Data Structures & AI Day 1
+//  Data Structures & AI Day 2
 //
 //  Created by Fernando  Restituto on 2020-02-10.
 //  Copyright © 2020 Fernando Restituto. All rights reserved.
@@ -9,200 +9,256 @@
 
 #include <iostream>
 
-#include <vector>
+#include "LinkedListNode.h"
 
-using namespace std;
+using namespace DataStucturesAndAI;
 
 int main(int argc, const char * argv[]) {
     
-    
-    // Declare and create our int array
-    int arraySize = 10;
-    int * data = new int[arraySize];
-
-    // Assign values to our array
-    for (int i = 0; i < arraySize; i++) {
-        data[i] = i;
-    }
-
-    // Access and print each element in our array
-    std::cout <<  "---Printing Array---\n";
-    for (int i = 0; i < arraySize; i++) {
-        std::cout <<  std::to_string(data[i]) + "\n";
-    }
+    std::cout << "Hello, World!\n";
     
     
     
-    
-    
-    // Investigate the memory addresses for each element in our array
-    std::cout <<  "---Printing Memory Addresses For Array---\n";
-    for (int i = 0; i < arraySize; i++) {
-        std::cout << &data[i];
-        std::cout << "\n";
-    }
-    
-    
-    
-    
-    arraySize = arraySize + 1;
-    int * data2 = new int[arraySize];
-
-    for (int i = 0; i < arraySize -1; i++) {
-        data2[i] = data[i];
-    }
-
-    delete [] data;
-    data2[arraySize-1] = 10;
-    data = data2;
-
-    std::cout <<  "---Verify Addition of Element End of Array---\n";
-    for (int i = 0; i < arraySize; i++) {
-        std::cout <<  std::to_string(data[i]) + "\n";
-    }
-    
-    
-    
-    
-    
-    // Add an element to the start of our array
-    arraySize = arraySize + 1;
-    data2 = new int[arraySize];
-
-    for (int i = 0; i < arraySize; i++) {
-        data2[i+1] = data[i];
-    }
-
-    data2[0] = -1;
-    delete [] data;
-    data = data2;
-
-    std::cout <<  "---Verify Additon of Element at Start of Array---\n";
-
-    for (int i = 0; i<arraySize; i++) {
-        std::cout <<  std::to_string(data[i]) + "\n";
-    }
-    
-    
-    
-    
-    
-    // Delete the element at the end of our array
-    arraySize = arraySize - 1;
-    data2 = new int[arraySize];
-
-    for (int i = 0; i < arraySize; i++){
-        data2[i] = data[i];
-    }
-
-    delete [] data;
-    data = data2;
-
-    std::cout <<  "---Verify Deletion of Element at End of Array---\n";
-
-    for (int i = 0; i < arraySize; i++) {
-        std::cout <<  std::to_string(data[i]) + "\n";
-    }
-    
-    
-    
-    
-    // Add an element at the 6th index of our array
-    arraySize = arraySize + 1;
-    int indexMod = 0;
-    data2 = new int[arraySize];
-
-    for (int i = 0; i < arraySize; i++) {
-        if(i == 6) {
-            data2[i] = 9001;
-            indexMod = 1;
-        }
-        data2[i + indexMod] = data[i];
-    }
-
-    delete [] data;
-    data = data2;
-
-    std::cout <<  "---Verify Addition of the Sixth Element of Array---\n";
-    for (int i = 0; i < arraySize; i++) {
-        std::cout <<  std::to_string(data[i]) + "\n";
-    }
-    
-    
-    
-    
-    std::cout <<  "---Verify Vector Code Usage---\n";
-    
-    vector<int> v;    // a vector of ints
-    int i;
-
-    for (i=0; i<10; i++){
-        v.push_back(i);
-    }
-
-    for (i=0; i<v.size(); i++) {
-        v[i] = v[i] * 2;
-    }
-
-    for (i=0; i<v.size(); i++){
-        cout << v[i] << endl;
-    }
         
-        
-    
-    
-    
-    //SOLUTIONS TO EXCERCISES!
-    
-    
-    
-    // Delete the element at the start of our array
-    arraySize = arraySize -1;
-    data2 = new int[arraySize];
+    //Assemble our linked list
 
-    for (int i = 1; i < arraySize + 1; i++) {
-        data2[i-1] = data[i];
+    LinkedListNode n1;
+    n1.data = new std::string("first");
+
+    LinkedListNode n2;
+    n2.data = new std::string("second");
+    n1.nextNode = &n2;
+
+    LinkedListNode n3;
+    n3.data = new std::string("third");
+    n2.nextNode = &n3;
+
+    LinkedListNode n4;
+    n4.data = new std::string("fourth");
+    n3.nextNode = &n4;
+
+    LinkedListNode n5;
+    n5.data = new std::string("fiveded");
+    n4.nextNode = &n5;
+    
+    
+    
+    
+    
+    // Create the headNode pointer
+    LinkedListNode * headNode = &n1;
+    
+    
+    
+    
+    
+    // Traversing through our linked list
+    LinkedListNode * currentNode = headNode;
+
+    while(currentNode != nullptr) {
+        std::cout << *currentNode->data + "\n";
+        currentNode = currentNode->nextNode;
+    }
+    
+    
+    
+    
+    
+    //Assembling a linked list, without maintain direct variable access to each element
+
+    LinkedListNode * newNode = new LinkedListNode();
+    newNode->data = new std::string("sixer");
+    n5.nextNode = newNode;
+    
+    
+    
+    
+    LinkedListNode * lastNode = newNode;
+    
+    
+    
+    
+    newNode = new LinkedListNode();
+    newNode->data = new std::string("sevenith");
+    lastNode->nextNode = newNode;
+    lastNode = newNode;
+
+    newNode = new LinkedListNode();
+    newNode->data = new std::string("eighth");
+    lastNode->nextNode = newNode;
+    lastNode = newNode;
+
+    newNode = new LinkedListNode();
+    newNode->data = new std::string("nineth");
+    lastNode->nextNode = newNode;
+    lastNode = newNode;
+    
+    
+    //Verify that the above elements have been added
+    std::cout << "---Verifying Elements Added---\n";
+    currentNode = headNode;
+    
+    while(currentNode != nullptr) {
+        std::cout << *currentNode->data + "\n";
+        currentNode = currentNode->nextNode;
+    }
+    
+    
+    
+    //Adding an element to the begining of a linked list
+    
+    newNode = new LinkedListNode();
+    newNode->data = new std::string("Newly Added Frist Node");
+    newNode->nextNode = headNode;
+    headNode = newNode;
+    
+    //Verify that the above code worked
+    std::cout << "---Verifying Node Added To Start---\n";
+    
+    currentNode = headNode;
+    
+    while(currentNode != nullptr)
+    {
+        std::cout << *currentNode->data + "\n";
+        currentNode = currentNode->nextNode;
+    }
+    
+    std::cout << "------\n";
+    
+    
+    
+    
+
+    // Delete an element from the start of a Linked List
+
+    LinkedListNode * secondNode = headNode->nextNode;
+    delete (headNode);
+    headNode = secondNode;
+
+    //Verify that the above code worked
+    std::cout << "---Verifying Node Removed From Start---\n";
+    currentNode = headNode;
+
+    while(currentNode != nullptr) {
+        std::cout << *currentNode->data + "\n";
+        currentNode = currentNode->nextNode;
     }
 
-    delete [] data;
-    data = data2;
+    std::cout << "------\n";
 
-    std::cout <<  "---Verify Deletion of Element at Start of Array---\n";
-    for (int i = 0; i < arraySize; i++) {
-        std::cout <<  std::to_string(data[i]) + "\n";
+
+
+
+
+    // Removing an element from the end of a Linked List
+
+    currentNode = headNode;
+    LinkedListNode * prevNode = nullptr;
+
+    while(currentNode->nextNode != nullptr) {
+        prevNode = currentNode;
+        currentNode = currentNode->nextNode;
     }
-    
-    
-    
-    
-    
-    //Delete the 6th element in our array (the one that was just added (with the value of 9001 at index 5))
-    arraySize = arraySize - 1;
-    indexMod = 0;
-    data2 = new int[arraySize];
-    for (int i = 0; i < arraySize + 1; i++) {
+
+    if(prevNode != nullptr) {
+        delete (prevNode->nextNode);
+        prevNode->nextNode = nullptr;
+    }
+
+    // Verify
+    std::cout << "---Verifying Node Removed From End---\n";
+
+    currentNode = headNode;
+
+    while(currentNode != nullptr) {
+        std::cout << *currentNode->data + "\n";
+        currentNode = currentNode->nextNode;
+    }
+
+    std::cout << "------\n";
+
+
+
+
+
+
+    //add a new element after the 5th element
+    newNode = new LinkedListNode();
+    newNode->data = new std::string("new node data");
+
+    prevNode = nullptr;
+
+    currentNode = headNode;
+
+    int i = 0;
+    while(currentNode != nullptr) {
         if(i == 5) {
-            indexMod = -1;
+            newNode->nextNode = currentNode;
+            prevNode->nextNode = newNode;
+
+            currentNode = nullptr;
         } else {
-            data2[i + indexMod] = data[i];
+            prevNode = currentNode;
+            currentNode = currentNode->nextNode;
         }
+
+        i++;
     }
 
-    delete [] data;
-    data = data2;
+    //Verify that the above code worked
+    std::cout << "---Verifying Node was Added After the Fifth---\n";
 
-    std::cout <<  "---Verify Deletion of the Sixth Element of Array---\n";
-    for (int i = 0; i < arraySize; i++) {
-        std::cout <<  std::to_string(data[i]) + "\n";
+    currentNode = headNode;
+
+    while(currentNode != nullptr) {
+        std::cout << *currentNode->data + "\n";
+        currentNode = currentNode->nextNode;
     }
-        
-        
-    
+
+    std::cout << "------\n";
+
+
+
+
+
+
+    //remove our newly added element
+
+    prevNode = nullptr;
+
+    currentNode = headNode;
+
+    i = 0;
+    while (currentNode != nullptr && currentNode != nullptr) {
+
+        if(i == 5) {
+            prevNode->nextNode = currentNode->nextNode;
+            delete (currentNode);
+            currentNode = nullptr;
+        } else {
+            prevNode = currentNode;
+            currentNode = currentNode->nextNode;
+        }
+
+        i++;
+    }
+
+    //Verify that the above code worked
+    std::cout << "---Verifying New Node Was Deleted---\n";
+
+    currentNode = headNode;
+
+    while(currentNode != nullptr) {
+        std::cout << *currentNode->data + "\n";
+        currentNode = currentNode->nextNode;
+    }
+
+    std::cout << "------\n";
+
+
     
     
     
     
     return 0;
-    
-    
 }
