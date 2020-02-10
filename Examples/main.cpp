@@ -1,261 +1,154 @@
 //
 //  main.cpp
-//  Data Structures & AI Day 2
+//  Data Structures & AI Day 4
 //
 //  Created by Fernando  Restituto on 2020-02-10.
 //  Copyright © 2020 Fernando Restituto. All rights reserved.
 //
-//  Licensed to triOS College.
 
 #include <iostream>
 
-#include "LinkedListNode.h"
+#include <stack>
 
-using namespace DataStucturesAndAI;
+#include <queue>
+
+#include <deque>
+
+#include "CircularList.h"
+#include <string>
+
+using namespace std;
+
 
 int main(int argc, const char * argv[]) {
     
-    std::cout << "Hello, World!\n";
     
-    
-    
-        
-    //Assemble our linked list
+    stack <int> s;
+    s.push(1);
+    s.push(2);
+    s.push(3);
+    s.push(4);
+    s.push(5);
 
-    LinkedListNode n1;
-    n1.data = new std::string("first");
+    cout << "--Print Each Top Element & Then Remove It --\n";
 
-    LinkedListNode n2;
-    n2.data = new std::string("second");
-    n1.nextNode = &n2;
+    while (!s.empty()) {
+        cout << '\t' << s.top() << "\n";
+        s.pop();
+    }
+    
+    
+    
+    
+    queue <int> q;
+    q.push(1);
+    q.push(2);
+    q.push(3);
+    q.push(4);
+    q.push(5);
 
-    LinkedListNode n3;
-    n3.data = new std::string("third");
-    n2.nextNode = &n3;
+    cout << "--Print Front Element & Then Remove It --\n";
 
-    LinkedListNode n4;
-    n4.data = new std::string("fourth");
-    n3.nextNode = &n4;
+    while (!q.empty()) {
+        cout << q.front() << "\n";
+        q.pop();
+    }
+    
+    
+    
+    
+    cout << "--Now Using Deque--\n";
 
-    LinkedListNode n5;
-    n5.data = new std::string("fiveded");
-    n4.nextNode = &n5;
-    
-    
-    
-    
-    
-    // Create the headNode pointer
-    LinkedListNode * headNode = &n1;
-    
-    
-    
-    
-    
-    // Traversing through our linked list
-    LinkedListNode * currentNode = headNode;
+    deque <int> d;
 
-    while(currentNode != nullptr) {
-        std::cout << *currentNode->data + "\n";
-        currentNode = currentNode->nextNode;
+    cout << "--Adding Elements to Front of Deque--\n";
+
+    d.push_front(1);
+    d.push_front(2);
+    d.push_front(3);
+    d.push_front(4);
+
+    cout << "--Printing elements from front and then pop them--\n";
+
+    while (!d.empty()) {
+        cout << d.front() << "\n";
+        d.pop_front();
+    }
+    
+    
+    
+    cout << "--Adding Elements to Back of Deque--\n";
+
+    d.push_back(1);
+    d.push_back(2);
+    d.push_back(3);
+    d.push_back(4);
+
+    cout << "--Printing elements from front and then pop them--\n";
+
+    while (!d.empty()) {
+        cout << d.front() << "\n";
+        d.pop_front();
+    }
+    
+    
+    
+    
+    cout << "--Adding Elements to Back of Deque--\n";
+
+    d.push_back(1);
+    d.push_back(2);
+    d.push_back(3);
+    d.push_back(4);
+
+    cout << "--Printing elements from front and then pop them--\n";
+
+    while (!d.empty()) {
+        cout << d.front() << "\n";
+        d.pop_front();
+    }
+    
+    
+    
+    
+    cout << "--Adding Elements to Front of Deque--\n";
+
+    d.push_front(1);
+    d.push_front(2);
+    d.push_front(3);
+    d.push_front(4);
+
+    cout << "--Printing elements from back and then pop them--\n";
+
+    while (!d.empty()) {
+        cout << d.back() << "\n";
+        d.pop_back();
     }
     
     
     
     
     
-    //Assembling a linked list, without maintain direct variable access to each element
+    CircularList<string> sentence;
 
-    LinkedListNode * newNode = new LinkedListNode();
-    newNode->data = new std::string("sixer");
-    n5.nextNode = newNode;
-    
-    
-    
-    
-    LinkedListNode * lastNode = newNode;
-    
-    
-    
-    
-    newNode = new LinkedListNode();
-    newNode->data = new std::string("sevenith");
-    lastNode->nextNode = newNode;
-    lastNode = newNode;
+    sentence.push_back("All");
+    sentence.push_back("work");
+    sentence.push_back("and");
+    sentence.push_back("no");
+    sentence.push_back("play");
+    sentence.push_back("makes");
+    sentence.push_back("Jack");
+    sentence.push_back("a");
+    sentence.push_back("dull");
+    sentence.push_back("boy");
 
-    newNode = new LinkedListNode();
-    newNode->data = new std::string("eighth");
-    lastNode->nextNode = newNode;
-    lastNode = newNode;
+    CircularList<string>::Iterator word = sentence.begin();
 
-    newNode = new LinkedListNode();
-    newNode->data = new std::string("nineth");
-    lastNode->nextNode = newNode;
-    lastNode = newNode;
-    
-    
-    //Verify that the above elements have been added
-    std::cout << "---Verifying Elements Added---\n";
-    currentNode = headNode;
-    
-    while(currentNode != nullptr) {
-        std::cout << *currentNode->data + "\n";
-        currentNode = currentNode->nextNode;
+    while (true) {
+        cout << *word << " ";
+        ++word;
     }
     
-    
-    
-    //Adding an element to the begining of a linked list
-    
-    newNode = new LinkedListNode();
-    newNode->data = new std::string("Newly Added Frist Node");
-    newNode->nextNode = headNode;
-    headNode = newNode;
-    
-    //Verify that the above code worked
-    std::cout << "---Verifying Node Added To Start---\n";
-    
-    currentNode = headNode;
-    
-    while(currentNode != nullptr)
-    {
-        std::cout << *currentNode->data + "\n";
-        currentNode = currentNode->nextNode;
-    }
-    
-    std::cout << "------\n";
-    
-    
-    
-    
-
-    // Delete an element from the start of a Linked List
-
-    LinkedListNode * secondNode = headNode->nextNode;
-    delete (headNode);
-    headNode = secondNode;
-
-    //Verify that the above code worked
-    std::cout << "---Verifying Node Removed From Start---\n";
-    currentNode = headNode;
-
-    while(currentNode != nullptr) {
-        std::cout << *currentNode->data + "\n";
-        currentNode = currentNode->nextNode;
-    }
-
-    std::cout << "------\n";
-
-
-
-
-
-    // Removing an element from the end of a Linked List
-
-    currentNode = headNode;
-    LinkedListNode * prevNode = nullptr;
-
-    while(currentNode->nextNode != nullptr) {
-        prevNode = currentNode;
-        currentNode = currentNode->nextNode;
-    }
-
-    if(prevNode != nullptr) {
-        delete (prevNode->nextNode);
-        prevNode->nextNode = nullptr;
-    }
-
-    // Verify
-    std::cout << "---Verifying Node Removed From End---\n";
-
-    currentNode = headNode;
-
-    while(currentNode != nullptr) {
-        std::cout << *currentNode->data + "\n";
-        currentNode = currentNode->nextNode;
-    }
-
-    std::cout << "------\n";
-
-
-
-
-
-
-    //add a new element after the 5th element
-    newNode = new LinkedListNode();
-    newNode->data = new std::string("new node data");
-
-    prevNode = nullptr;
-
-    currentNode = headNode;
-
-    int i = 0;
-    while(currentNode != nullptr) {
-        if(i == 5) {
-            newNode->nextNode = currentNode;
-            prevNode->nextNode = newNode;
-
-            currentNode = nullptr;
-        } else {
-            prevNode = currentNode;
-            currentNode = currentNode->nextNode;
-        }
-
-        i++;
-    }
-
-    //Verify that the above code worked
-    std::cout << "---Verifying Node was Added After the Fifth---\n";
-
-    currentNode = headNode;
-
-    while(currentNode != nullptr) {
-        std::cout << *currentNode->data + "\n";
-        currentNode = currentNode->nextNode;
-    }
-
-    std::cout << "------\n";
-
-
-
-
-
-
-    //remove our newly added element
-
-    prevNode = nullptr;
-
-    currentNode = headNode;
-
-    i = 0;
-    while (currentNode != nullptr && currentNode != nullptr) {
-
-        if(i == 5) {
-            prevNode->nextNode = currentNode->nextNode;
-            delete (currentNode);
-            currentNode = nullptr;
-        } else {
-            prevNode = currentNode;
-            currentNode = currentNode->nextNode;
-        }
-
-        i++;
-    }
-
-    //Verify that the above code worked
-    std::cout << "---Verifying New Node Was Deleted---\n";
-
-    currentNode = headNode;
-
-    while(currentNode != nullptr) {
-        std::cout << *currentNode->data + "\n";
-        currentNode = currentNode->nextNode;
-    }
-
-    std::cout << "------\n";
-
-
     
     
     
